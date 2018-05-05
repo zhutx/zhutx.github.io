@@ -92,18 +92,18 @@
 
 
 
-<meta name="description" content="查看队列也许你想知道RabbitMQ中到底有多少个消息，你可以使用rabbitmqctl工具： 1sudo rabbitmqctl list_queues 忘记应答很容易犯忘记应答的错误，但会导致非常严重的后果。Messages会被重发，RabbitMQ会消耗越来越多的内存因为unacked的消息无法释放（甚至更严重，RabbitMQ内部维护了一个最大打开线程数，如果太多的消息没有应答，Rabbi">
+<meta name="description" content="查看队列也许你想知道RabbitMQ中到底有多少个消息，你可以使用rabbitmqctl工具： 1sudo rabbitmqctl list_queues">
 <meta name="keywords" content="RabbitMQ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="运维相关">
 <meta property="og:url" content="http://yoursite.com/2018/04/17/rabbitmq/运维相关/index.html">
 <meta property="og:site_name" content="zhutx">
-<meta property="og:description" content="查看队列也许你想知道RabbitMQ中到底有多少个消息，你可以使用rabbitmqctl工具： 1sudo rabbitmqctl list_queues 忘记应答很容易犯忘记应答的错误，但会导致非常严重的后果。Messages会被重发，RabbitMQ会消耗越来越多的内存因为unacked的消息无法释放（甚至更严重，RabbitMQ内部维护了一个最大打开线程数，如果太多的消息没有应答，Rabbi">
+<meta property="og:description" content="查看队列也许你想知道RabbitMQ中到底有多少个消息，你可以使用rabbitmqctl工具： 1sudo rabbitmqctl list_queues">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-05T04:57:46.000Z">
+<meta property="og:updated_time" content="2018-05-05T04:59:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="运维相关">
-<meta name="twitter:description" content="查看队列也许你想知道RabbitMQ中到底有多少个消息，你可以使用rabbitmqctl工具： 1sudo rabbitmqctl list_queues 忘记应答很容易犯忘记应答的错误，但会导致非常严重的后果。Messages会被重发，RabbitMQ会消耗越来越多的内存因为unacked的消息无法释放（甚至更严重，RabbitMQ内部维护了一个最大打开线程数，如果太多的消息没有应答，Rabbi">
+<meta name="twitter:description" content="查看队列也许你想知道RabbitMQ中到底有多少个消息，你可以使用rabbitmqctl工具： 1sudo rabbitmqctl list_queues">
 
 
 
@@ -437,6 +437,7 @@
       
         <h1 id="查看队列"><a href="#查看队列" class="headerlink" title="查看队列"></a>查看队列</h1><p>也许你想知道RabbitMQ中到底有多少个消息，你可以使用rabbitmqctl工具：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rabbitmqctl list_queues</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h1 id="忘记应答"><a href="#忘记应答" class="headerlink" title="忘记应答"></a>忘记应答</h1><p>很容易犯忘记应答的错误，但会导致非常严重的后果。Messages会被重发，RabbitMQ会消耗越来越多的内存因为unacked的消息无法释放（甚至更严重，RabbitMQ内部维护了一个最大打开线程数，如果太多的消息没有应答，RabbitMQ甚至会整个崩溃掉）</p>
 <p>你可以用rabbitmqctl查看未被应答的消息数：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rabbitmqctl list_queues name messages_ready      </span><br><span class="line">messages_unacknowledged</span><br></pre></td></tr></table></figure>
@@ -490,8 +491,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/17/rabbitmq/任务队列/" rel="prev" title="任务队列">
-                任务队列 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/17/rabbitmq/HelloWorld/" rel="prev" title="HelloWorld">
+                HelloWorld <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

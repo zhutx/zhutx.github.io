@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://yoursite.com/uploads/rabbitmq/mulibind.png">
 <meta property="og:image" content="http://yoursite.com/uploads/rabbitmq/direct2.png">
 <meta property="og:image" content="http://yoursite.com/uploads/rabbitmq/topic.png">
-<meta property="og:updated_time" content="2018-05-05T04:57:38.000Z">
+<meta property="og:updated_time" content="2018-05-05T04:58:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="交换机">
 <meta name="twitter:description" content="交换机什么是交换机 rabbitmq的message model实际上消息不直接发送到queue中，中间有一个exchange是做消息分发，producer甚至不知道消息发送到那个队列中去。因此，当exchange收到message时，必须准确知道该如何分发。是append到一定规则的queue，还是append到多个queue中，还是被丢弃？这些规则都是通过exchagne的4种type去定义的">
@@ -443,6 +443,7 @@
       
         <h1 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h1><p><strong>什么是交换机</strong></p>
 <p>rabbitmq的message model实际上消息不直接发送到queue中，中间有一个exchange是做消息分发，producer甚至不知道消息发送到那个队列中去。因此，当exchange收到message时，必须准确知道该如何分发。是append到一定规则的queue，还是append到多个queue中，还是被丢弃？这些规则都是通过exchagne的4种type去定义的。</p>
+<a id="more"></a>
 <p>exchange是一个消息的agent，每一个虚拟的host中都有定义。它的职责是把message路由到不同的queue中。</p>
 <p><strong>binding</strong></p>
 <p>exchange和queue通过routing-key关联，这两者之间的关系是就是binding。如下图所示,X表示交换机，红色表示队列，交换机通过一个routing-key去binding一个queue。</p>
@@ -570,8 +571,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/17/rabbitmq/任务队列/" rel="next" title="任务队列">
-                <i class="fa fa-chevron-left"></i> 任务队列
+              <a href="/2018/04/17/rabbitmq/HelloWorld/" rel="next" title="HelloWorld">
+                <i class="fa fa-chevron-left"></i> HelloWorld
               </a>
             
           </div>
@@ -580,8 +581,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/17/rabbitmq/HelloWorld/" rel="prev" title="HelloWorld">
-                HelloWorld <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/17/rabbitmq/任务队列/" rel="prev" title="任务队列">
+                任务队列 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
