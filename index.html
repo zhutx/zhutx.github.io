@@ -318,7 +318,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/17/rabbitmq/HelloWorld/" itemprop="url">HelloWorld</a></h1>
+                <a class="post-title-link" href="/2018/04/17/rabbitmq/HelloWorld/" itemprop="url">RabbitMQ（一）HelloWorld</a></h1>
         
 
         <div class="post-meta">
@@ -481,7 +481,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/17/rabbitmq/交换机/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/17/rabbitmq/任务队列/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhutx">
@@ -500,7 +500,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/17/rabbitmq/交换机/" itemprop="url">交换机</a></h1>
+                <a class="post-title-link" href="/2018/04/17/rabbitmq/任务队列/" itemprop="url">RabbitMQ（二）任务队列</a></h1>
         
 
         <div class="post-meta">
@@ -566,7 +566,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,033
+                  1,413
                 </span>
               
 
@@ -582,7 +582,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  14
+                  7
                 </span>
               
             </div>
@@ -604,10 +604,10 @@
 
       
         
-          <h1 id="什么是交换机"><a href="#什么是交换机" class="headerlink" title="什么是交换机"></a>什么是交换机</h1><p>rabbitmq的message model实际上消息不直接发送到queue中，中间有一个exchange是做消息分发，producer甚至不知道消息发送到那个队列中去。因此，当exchange收到message时，必须准确知道该如何分发。是append到一定规则的queue，还是append到多个queue中，还是被丢弃？这些规则都是通过exchagne的4种type去定义的。</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一节我们描述了最简单的RabbitMQ操作，如何发送、接受消息。在这一节中我们将描述如何创建一个任务队列，来将高耗时的任务分发到多个消费者，从而提高处理效率。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/17/rabbitmq/交换机/#more" rel="contents">
+            <a class="btn" href="/2018/04/17/rabbitmq/任务队列/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -681,7 +681,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/17/rabbitmq/运维相关/" itemprop="url">运维相关</a></h1>
+                <a class="post-title-link" href="/2018/04/17/rabbitmq/运维相关/" itemprop="url">RabbitMQ（四）运维相关</a></h1>
         
 
         <div class="post-meta">
@@ -844,7 +844,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/17/rabbitmq/任务队列/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/17/rabbitmq/交换机/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhutx">
@@ -863,7 +863,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/17/rabbitmq/任务队列/" itemprop="url">任务队列</a></h1>
+                <a class="post-title-link" href="/2018/04/17/rabbitmq/交换机/" itemprop="url">RabbitMQ（三）交换机</a></h1>
         
 
         <div class="post-meta">
@@ -929,7 +929,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,413
+                  3,033
                 </span>
               
 
@@ -945,7 +945,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7
+                  14
                 </span>
               
             </div>
@@ -967,10 +967,10 @@
 
       
         
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一节我们描述了最简单的RabbitMQ操作，如何发送、接受消息。在这一节中我们将描述如何创建一个任务队列，来将高耗时的任务分发到多个消费者，从而提高处理效率。</p>
+          <h1 id="什么是交换机"><a href="#什么是交换机" class="headerlink" title="什么是交换机"></a>什么是交换机</h1><p>rabbitmq的message model实际上消息不直接发送到queue中，中间有一个exchange是做消息分发，producer甚至不知道消息发送到那个队列中去。因此，当exchange收到message时，必须准确知道该如何分发。是append到一定规则的queue，还是append到多个queue中，还是被丢弃？这些规则都是通过exchagne的4种type去定义的。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/17/rabbitmq/任务队列/#more" rel="contents">
+            <a class="btn" href="/2018/04/17/rabbitmq/交换机/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
