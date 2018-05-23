@@ -299,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/31/guuin/设备端接口协议/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/17/rabbitmq/任务队列/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhutx">
@@ -318,7 +318,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/31/guuin/设备端接口协议/" itemprop="url">设备端接口协议</a></h1>
+                <a class="post-title-link" href="/2018/04/17/rabbitmq/任务队列/" itemprop="url">RabbitMQ（二）任务队列</a></h1>
         
 
         <div class="post-meta">
@@ -330,8 +330,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T13:31:21+08:00">
-                2018-05-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T15:31:21+08:00">
+                2018-04-17
               </time>
             
 
@@ -353,8 +353,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/guuin/" itemprop="url" rel="index">
-                    <span itemprop="name">guuin</span>
+                  <a href="/categories/RabbitMQ/" itemprop="url" rel="index">
+                    <span itemprop="name">RabbitMQ</span>
                   </a>
                 </span>
 
@@ -384,7 +384,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,387
+                  1,413
                 </span>
               
 
@@ -400,7 +400,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  7
                 </span>
               
             </div>
@@ -422,203 +422,14 @@
 
       
         
-          
-            <a id="more"></a>
-<h1 id="终端接口协议"><a href="#终端接口协议" class="headerlink" title="终端接口协议"></a>终端接口协议</h1><h2 id="生成二维码串"><a href="#生成二维码串" class="headerlink" title="生成二维码串"></a>生成二维码串</h2><ul>
-<li><p>接口地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST：$&#123;device-interface&#125;/active/genQrCode</span><br><span class="line"></span><br><span class="line">Body：raw JSON(application/json)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>请求JSON示例</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"deviceSn"</span>: <span class="string">"0000000001"</span>,</span><br><span class="line">  <span class="attr">"qrCodeType"</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>请求参数</p>
-<p>| 参数名     | 参数描述   | 类型   | 长度 | 值阈               | 说明 |<br>| ———- | ———- | —— | —- | —————— | —- |<br>| deviceSn   | 设备序列号 | string |      |                    |      |<br>| qrCodeType | 二维码类型 | int    |      | 参见常量QrCodeType |      |</p>
-</li>
-<li><p>返回JSON示例</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"result"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"操作成功"</span>,</span><br><span class="line">    <span class="attr">"data"</span>: &#123;</span><br><span class="line">        <span class="attr">"deviceSn"</span>: <span class="string">"0000000001"</span>,</span><br><span class="line">        <span class="attr">"qrCodeType"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"qrCode"</span>: <span class="string">"g5fjv3ts94o6m8gj0nqd89kj9sal4hk3"</span>,</span><br><span class="line">        <span class="attr">"url"</span>: <span class="string">"http://fish.guuin.com:8004/device/activeForward?qrCode=g5fjv3ts94o6m8gj0nqd89kj9sal4hk3"</span>,</span><br><span class="line">        <span class="attr">"status"</span>: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>返回参数</p>
-<p>| 参数名     | 参数描述     | 类型   | 值阈                 | 说明 |<br>| ———- | ———— | —— | ——————– | —- |<br>| deviceSn   | 设备序列号   | string |                      |      |<br>| qrCodeType | 二维码类型   | int    | 参见常量QrCodeType   |      |<br>| qrCode     | 二维码串号   | string |                      |      |<br>| url        | 扫码请求地址 | string |                      |      |<br>| status     | 二维码状态   | int    | 参见常量QrCodeStatus |      |</p>
-</li>
-<li><p>其他备注</p>
-<p>​</p>
-</li>
-</ul>
-<h2 id="获取激活状态"><a href="#获取激活状态" class="headerlink" title="获取激活状态"></a>获取激活状态</h2><ul>
-<li><p>接口地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET：$&#123;device-interface&#125;/active/state?qrCode=l0s41gthggj85qlolvh1g0b9riam3oip</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>请求参数</p>
-<p>| 参数名 | 参数描述   | 类型   | 长度 | 值阈 | 说明 |<br>| —— | ———- | —— | —- | —- | —- |<br>| qrCode | 二维码串号 | string |      |      |      |</p>
-</li>
-<li><p>返回JSON示例</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"result"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"操作成功"</span>,</span><br><span class="line">    <span class="attr">"data"</span>: &#123;</span><br><span class="line">        <span class="attr">"deviceSn"</span>: <span class="string">"0000000001"</span>,</span><br><span class="line">        <span class="attr">"qrCodeStatus"</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">"communicationKey"</span>: <span class="string">"riv91qu2krdl2fnp377knto5it"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>返回参数</p>
-<p>| 参数名           | 参数描述   | 类型   | 值阈                 | 说明               |<br>| —————- | ———- | —— | ——————– | —————— |<br>| deviceSn         | 设备序列号 | string |                      |                    |<br>| qrCodeStatus     | 二维码状态 | int    | 参见常量QrCodeStatus |                    |<br>| communicationKey | 通信密钥   | string |                      | 后续在header中携带 |</p>
-</li>
-<li><p>其他备注</p>
-<p>​</p>
-</li>
-</ul>
-<h2 id="获取初始化数据"><a href="#获取初始化数据" class="headerlink" title="获取初始化数据"></a>获取初始化数据</h2><ul>
-<li><p>接口地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET：$&#123;device-interface&#125;/biz/initData?deviceSn=0000000001</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>请求参数</p>
-<p>| 参数名   | 参数描述   | 类型   | 长度 | 值阈 | 说明 |<br>| ——– | ———- | —— | —- | —- | —- |<br>| deviceSn | 设备序列号 | string |      |      |      |</p>
-</li>
-<li><p>返回JSON示例</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"result"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"操作成功"</span>,</span><br><span class="line">    <span class="attr">"data"</span>: &#123;</span><br><span class="line">        <span class="attr">"orgInfo"</span>: &#123;</span><br><span class="line">            <span class="attr">"orgId"</span>: <span class="string">"1599452409510232064"</span>,</span><br><span class="line">            <span class="attr">"orgName"</span>: <span class="string">"测试机构2"</span>,</span><br><span class="line">            <span class="attr">"provCode"</span>: <span class="number">330001</span>,</span><br><span class="line">            <span class="attr">"cityCode"</span>: <span class="number">330101</span>,</span><br><span class="line">            <span class="attr">"districtCode"</span>: <span class="number">330111</span>,</span><br><span class="line">            <span class="attr">"streetCode"</span>: <span class="number">330110002</span>,</span><br><span class="line">            <span class="attr">"address"</span>: <span class="string">"address2"</span>,</span><br><span class="line">            <span class="attr">"contact"</span>: <span class="string">"contact2"</span>,</span><br><span class="line">            <span class="attr">"phone"</span>: <span class="string">"888888882"</span>,</span><br><span class="line">            <span class="attr">"memo"</span>: <span class="string">"memo2"</span>,</span><br><span class="line">            <span class="attr">"logoUrl"</span>: <span class="string">"http://image.guuin.com/logo/2018/5/8/12/d702429d741740c7817561b853e37fb8.jpg"</span>,</span><br><span class="line">            <span class="attr">"status"</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">"gmtCreate"</span>: <span class="number">1525356685013</span>,</span><br><span class="line">            <span class="attr">"gmtModify"</span>: <span class="number">1525752683417</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"faceStandardInfo"</span>: &#123;</span><br><span class="line">            <span class="attr">"quality"</span>: <span class="number">0.8</span>,</span><br><span class="line">            <span class="attr">"rollAngle"</span>: <span class="number">20</span>,</span><br><span class="line">            <span class="attr">"pitchAngle"</span>: <span class="number">20</span>,</span><br><span class="line">            <span class="attr">"yawAngle"</span>: <span class="number">20</span>,</span><br><span class="line">            <span class="attr">"faceWidth"</span>: <span class="number">20</span>,</span><br><span class="line">            <span class="attr">"faceHeight"</span>: <span class="number">20</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>返回参数</p>
-<p>| 参数名                      | 参数描述     | 类型   | 值阈              | 说明 |<br>| ————————— | ———— | —— | —————– | —- |<br>| orgInfo.orgId               | 机构id       | long   |                   |      |<br>| orgInfo.orgName             | 机构名       | string |                   |      |<br>| orgInfo.provCode            | 省编号       | int    |                   |      |<br>| orgInfo.cityCode            | 市编号       | int    |                   |      |<br>| orgInfo.districtCode        | 区编号       | int    |                   |      |<br>| orgInfo.streetCode          | 街道编号     | int    |                   |      |<br>| orgInfo.address             | 地址         | string |                   |      |<br>| orgInfo.contact             | 负责人       | string |                   |      |<br>| orgInfo.phone               | 电话         | string |                   |      |<br>| orgInfo.memo                | 备注         | string |                   |      |<br>| orgInfo.logoUrl             | logo地址     | string |                   |      |<br>| orgInfo.status              | 状态         | int    | 参见常量OrgStatus |      |<br>| faceStandardInfo.quality    | 人脸质量     | float  |                   |      |<br>| faceStandardInfo.rollAngle  | 左右歪头角度 | float  |                   |      |<br>| faceStandardInfo.pitchAngle | 抬头低头角度 | float  |                   |      |<br>| faceStandardInfo.yawAngle   | 左右转头角度 | float  |                   |      |<br>| faceStandardInfo.faceWidth  | 人脸宽度     | float  |                   |      |<br>| faceStandardInfo.faceHeight | 人脸高度     | float  |                   |      |</p>
-</li>
-<li><p>其他备注</p>
-</li>
-</ul>
-<h2 id="人脸识别"><a href="#人脸识别" class="headerlink" title="人脸识别"></a>人脸识别</h2><ul>
-<li><p>接口地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST：$&#123;device-interface&#125;/verify/images</span><br><span class="line"></span><br><span class="line">Body：form-data</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>请求参数</p>
-<p>| 参数名   | 参数描述   | 类型   | 长度 | 值阈 | 说明       |<br>| ——– | ———- | —— | —- | —- | ———- |<br>| deviceSn | 设备序列号 | string |      |      |            |<br>| images   | 人脸图片   | File   |      |      | 支持多图片 |</p>
-</li>
-<li><p>返回JSON示例</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"result"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"操作成功"</span>,</span><br><span class="line">    <span class="attr">"data"</span>: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>返回参数</p>
-<p>| 参数名 | 参数描述 | 类型 | 值阈 | 说明 |<br>| —— | ——– | —- | —- | —- |<br>|        |          |      |      |      |</p>
-</li>
-<li><p>其他备注</p>
-</li>
-</ul>
-<h2 id="获取验证码"><a href="#获取验证码" class="headerlink" title="获取验证码"></a>获取验证码</h2><ul>
-<li><p>接口地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET：$&#123;device-interface&#125;/faceEnter/checkCode?mobile=15088668850</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>请求参数</p>
-<p>| 参数名 | 参数描述 | 类型   | 长度 | 值阈 | 说明 |<br>| —— | ——– | —— | —- | —- | —- |<br>| mobile | 手机号   | string |      |      |      |</p>
-</li>
-<li><p>返回JSON示例</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"result"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"操作成功"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>返回参数</p>
-<p>| 参数名 | 参数描述 | 类型 | 值阈 | 说明 |<br>| —— | ——– | —- | —- | —- |<br>|        |          |      |      |      |</p>
-</li>
-<li><p>其他备注</p>
-</li>
-</ul>
-<h2 id="验证合法性"><a href="#验证合法性" class="headerlink" title="验证合法性"></a>验证合法性</h2><ul>
-<li><p>接口地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET：$&#123;device-interface&#125;/faceEnter/checkValid?orgId=1599452409510232064&amp;mobile=15088668850&amp;checkCode=5509</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>请求参数</p>
-<p>| 参数名    | 参数描述 | 类型   | 长度 | 值阈 | 说明 |<br>| ——— | ——– | —— | —- | —- | —- |<br>| orgId     | 机构id   | long   |      |      |      |<br>| mobile    | 手机号   | string |      |      |      |<br>| checkCode | 验证码   | string |      |      |      |</p>
-</li>
-<li><p>返回JSON示例</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"result"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"操作成功"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>返回参数</p>
-<p>| 参数名 | 参数描述 | 类型 | 值阈 | 说明 |<br>| —— | ——– | —- | —- | —- |<br>|        |          |      |      |      |</p>
-</li>
-<li><p>其他备注</p>
-</li>
-</ul>
-<h2 id="获取人员信息"><a href="#获取人员信息" class="headerlink" title="获取人员信息"></a>获取人员信息</h2><ul>
-<li><p>接口地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET：$&#123;device-interface&#125;/faceEnter/person?orgId=1599452409510232064&amp;mobile=15088668850</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>请求参数</p>
-<p>| 参数名 | 参数描述 | 类型   | 长度 | 值阈 | 说明 |<br>| —— | ——– | —— | —- | —- | —- |<br>| orgId  | 机构id   | long   |      |      |      |<br>| mobile | 手机号   | string |      |      |      |</p>
-</li>
-<li><p>返回JSON示例</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"result"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"操作成功"</span>,</span><br><span class="line">    <span class="attr">"data"</span>: &#123;</span><br><span class="line">        <span class="attr">"personId"</span>: <span class="string">"1600674989130907648"</span>,</span><br><span class="line">        <span class="attr">"orgId"</span>: <span class="string">"1599452409510232064"</span>,</span><br><span class="line">        <span class="attr">"personType"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"personName"</span>: <span class="string">"朱田祥"</span>,</span><br><span class="line">        <span class="attr">"nickName"</span>: <span class="string">"小朱"</span>,</span><br><span class="line">        <span class="attr">"faceEnterFlag"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"verifyFaceUrl"</span>: <span class="string">"http://image.guuin.com/verifyFace/2018/5/21/22/c54cb509876d4bac834316b6b7874390.jpg"</span>,</span><br><span class="line">        <span class="attr">"mobile"</span>: <span class="string">"15088668850"</span>,</span><br><span class="line">        <span class="attr">"status"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"gmtCreate"</span>: <span class="number">1526522633215</span>,</span><br><span class="line">        <span class="attr">"gmtModify"</span>: <span class="number">1526913763215</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>返回参数</p>
-<p>| 参数名        | 参数描述     | 类型   | 值阈                 | 说明 |<br>| ————- | ———— | —— | ——————– | —- |<br>| personId      | 人员id       | long   |                      |      |<br>| orgId         | 机构id       | long   |                      |      |<br>| personType    | 人员类型     | int    | 参见常量PersonType   |      |<br>| personName    | 姓名         | string |                      |      |<br>| nickName      | 昵称         | string |                      |      |<br>| faceEnterFlag | 人脸是否已录 | int    | 参见常量YesNoFlag    |      |<br>| verifyFaceUrl | 识别照片url  | string |                      |      |<br>| mobile        | 手机号       | string |                      |      |<br>| status        | 状态         | int    | 参见常量PersonStatus |      |</p>
-</li>
-<li><p>其他备注</p>
-</li>
-</ul>
-<h2 id="上传临时图片"><a href="#上传临时图片" class="headerlink" title="上传临时图片"></a>上传临时图片</h2><ul>
-<li><p>接口地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST：$&#123;device-interface&#125;/faceEnter/uploadTempPic</span><br><span class="line"></span><br><span class="line">Body：form-data</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>请求参数</p>
-<p>| 参数名 | 参数描述 | 类型 | 长度 | 值阈 | 说明 |<br>| —— | ——– | —- | —- | —- | —- |<br>| image  | 人脸图片 | File |      |      |      |</p>
-</li>
-<li><p>返回JSON示例</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"result"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"操作成功"</span>,</span><br><span class="line">    <span class="attr">"data"</span>: <span class="string">"http://image.guuin.com/temporary/2018/5/21/22/0543c5cbca9a4994a403b91ef9fd770a.jpg"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>返回参数</p>
-<p>| 参数名 | 参数描述 | 类型   | 值阈 | 说明 |<br>| —— | ——– | —— | —- | —- |<br>| data   | 图片URL  | string |      |      |</p>
-</li>
-<li><p>其他备注</p>
-</li>
-</ul>
-<h2 id="修改识别照片"><a href="#修改识别照片" class="headerlink" title="修改识别照片"></a>修改识别照片</h2><ul>
-<li><p>接口地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST：$&#123;device-interface&#125;/faceEnter/updateVerifyFaceUrl</span><br><span class="line"></span><br><span class="line">Body：raw JSON(application/json)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>请求JSON示例</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"orgId"</span>: <span class="number">1599452409510232064</span>,</span><br><span class="line">	<span class="attr">"personId"</span>: <span class="number">1600674989130907648</span>,</span><br><span class="line">	<span class="attr">"verifyFaceUrl"</span>: <span class="string">"http://image.guuin.com/temporary/2018/5/21/22/0543c5cbca9a4994a403b91ef9fd770a.jpg"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>请求参数</p>
-<p>| 参数名        | 参数描述    | 类型   | 长度 | 值阈 | 说明 |<br>| ————- | ———– | —— | —- | —- | —- |<br>| orgId         | 机构id      | long   |      |      |      |<br>| personId      | 人员id      | long   |      |      |      |<br>| verifyFaceUrl | 识别照片url | string |      |      |      |</p>
-</li>
-<li><p>返回JSON示例</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"result"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"操作成功"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>返回参数</p>
-<p>| 参数名 | 参数描述 | 类型 | 值阈 | 说明 |<br>| —— | ——– | —- | —- | —- |<br>|        |          |      |      |      |</p>
-</li>
-<li><p>其他备注</p>
-</li>
-</ul>
-<h1 id="参考常量表"><a href="#参考常量表" class="headerlink" title="参考常量表"></a>参考常量表</h1><table>
-<thead>
-<tr>
-<th>常量字段</th>
-<th>常量说明</th>
-<th>常量值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>YesNoFlag</td>
-<td>是或否标识</td>
-<td>0-否<br>1-是</td>
-</tr>
-<tr>
-<td>QrCodeType</td>
-<td>二维码串类型</td>
-<td>0-管理<br>1-激活<br>2-开门<br>3-录脸</td>
-</tr>
-<tr>
-<td>QrCodeStatus</td>
-<td>二维码串状态</td>
-<td>-1-已失效<br> 0-新生成<br> 1-已扫码<br> 2-已激活</td>
-</tr>
-<tr>
-<td>OrgStatus</td>
-<td>机构状态</td>
-<td>0-停用<br>1-可用</td>
-</tr>
-<tr>
-<td>PersonType</td>
-<td>人员类型</td>
-<td>1-成员<br>2-访客</td>
-</tr>
-<tr>
-<td>PersonStatus</td>
-<td>人员状态</td>
-<td>0-停用<br>1-可用<br>2-删除</td>
-</tr>
-</tbody>
-</table>
-
-          
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一节我们描述了最简单的RabbitMQ操作，如何发送、接受消息。在这一节中我们将描述如何创建一个任务队列，来将高耗时的任务分发到多个消费者，从而提高处理效率。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/17/rabbitmq/任务队列/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1214,187 +1025,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/17/rabbitmq/任务队列/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhutx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhutx">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/17/rabbitmq/任务队列/" itemprop="url">RabbitMQ（二）任务队列</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T15:31:21+08:00">
-                2018-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RabbitMQ/" itemprop="url" rel="index">
-                    <span itemprop="name">RabbitMQ</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,413
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  7
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一节我们描述了最简单的RabbitMQ操作，如何发送、接受消息。在这一节中我们将描述如何创建一个任务队列，来将高耗时的任务分发到多个消费者，从而提高处理效率。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/17/rabbitmq/任务队列/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/15/react-redux/React技术栈一览/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1799,7 +1429,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1810,7 +1440,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1821,7 +1451,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1902,7 +1532,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">9.6k</span>
+    <span title="Site words total count">8.2k</span>
   
 </div>
 
