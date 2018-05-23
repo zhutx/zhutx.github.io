@@ -447,7 +447,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 关闭自动ACK机制</span><br><span class="line"><span class="keyword">boolean</span> autoAck = <span class="keyword">false</span>;</span><br><span class="line">channel.basicConsume(TASK_QUEUE_NAME, autoAck, consumer);</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 收到消息后主动方ACK</span><br><span class="line">channel.basicAck(envelope.getDeliveryTag(), <span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
 <h1 id="忘记应答"><a href="#忘记应答" class="headerlink" title="忘记应答"></a>忘记应答</h1><p>手动ack时，如忘记应答，导致unacked的消息无法释放，消息会一直被重发。（RabbitMQ内部维护了一个最大打开线程数，如果太多的消息没有应答，RabbitMQ甚至会崩溃）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 查看未应答消息数</span><br><span class="line">sudo rabbitmqctl list_queues name messages_ready messages_unacknowledged</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看未应答消息数</span></span><br><span class="line">sudo rabbitmqctl list_queues name messages_ready messages_unacknowledged</span><br></pre></td></tr></table></figure>
 <h1 id="消息持久化"><a href="#消息持久化" class="headerlink" title="消息持久化"></a>消息持久化</h1><p>光有ack应答机制还不够，RabbitMQ挂掉后，还是会丢失。因此我们还需要将消息持久化下来，当RabbitMQ重启时，队列以及消息也能够恢复。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 队列持久化</span><br><span class="line"><span class="keyword">boolean</span> durable = <span class="keyword">true</span>;</span><br><span class="line">channel.queueDeclare(TASK_QUEUE_NAME, durable, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 消息持久化</span><br><span class="line">AMQP.BasicProperties props = MessageProperties.PERSISTENT_TEXT_PLAIN;</span><br><span class="line">channel.basicPublish(<span class="string">""</span>, TASK_QUEUE_NAME, props, message.getBytes(<span class="string">"UTF-8"</span>));</span><br></pre></td></tr></table></figure>
@@ -465,15 +465,15 @@
 <p><strong>跑起来</strong></p>
 <p>首先，让我们同时运行两个工作线程，他们能够同时从队列获取消息。我们也需要同时开启3个console：1个生产者，2个消费者</p>
 <p>消费者C1</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> shell 1</span><br><span class="line">java -cp $CP Worker</span><br><span class="line"><span class="meta">#</span> =&gt; [*] Waiting for messages. To exit press CTRL+C</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> shell 1</span></span><br><span class="line">java -cp $CP Worker</span><br><span class="line"><span class="meta">#</span><span class="bash"> =&gt; [*] Waiting <span class="keyword">for</span> messages. To <span class="built_in">exit</span> press CTRL+C</span></span><br></pre></td></tr></table></figure>
 <p>消费者C2</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> shell 2</span><br><span class="line">java -cp $CP Worker</span><br><span class="line"><span class="meta">#</span> =&gt; [*] Waiting for messages. To exit press CTRL+C</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> shell 2</span></span><br><span class="line">java -cp $CP Worker</span><br><span class="line"><span class="meta">#</span><span class="bash"> =&gt; [*] Waiting <span class="keyword">for</span> messages. To <span class="built_in">exit</span> press CTRL+C</span></span><br></pre></td></tr></table></figure>
 <p>让我们运行生产者</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> shell 3</span><br><span class="line">java -cp $CP NewTask</span><br><span class="line"><span class="meta">#</span> =&gt; First message.</span><br><span class="line">java -cp $CP NewTask</span><br><span class="line"><span class="meta">#</span> =&gt; Second message..</span><br><span class="line">java -cp $CP NewTask</span><br><span class="line"><span class="meta">#</span> =&gt; Third message...</span><br><span class="line">java -cp $CP NewTask</span><br><span class="line"><span class="meta">#</span> =&gt; Fourth message....</span><br><span class="line">java -cp $CP NewTask</span><br><span class="line"><span class="meta">#</span> =&gt; Fifth message.....</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> shell 3</span></span><br><span class="line">java -cp $CP NewTask</span><br><span class="line"><span class="meta">#</span><span class="bash"> =&gt; First message.</span></span><br><span class="line">java -cp $CP NewTask</span><br><span class="line"><span class="meta">#</span><span class="bash"> =&gt; Second message..</span></span><br><span class="line">java -cp $CP NewTask</span><br><span class="line"><span class="meta">#</span><span class="bash"> =&gt; Third message...</span></span><br><span class="line">java -cp $CP NewTask</span><br><span class="line"><span class="meta">#</span><span class="bash"> =&gt; Fourth message....</span></span><br><span class="line">java -cp $CP NewTask</span><br><span class="line"><span class="meta">#</span><span class="bash"> =&gt; Fifth message.....</span></span><br></pre></td></tr></table></figure>
 <p>让我们看看消费者们<br>消费者C1</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java -cp $CP Worker</span><br><span class="line"><span class="meta">#</span> =&gt; [*] Waiting for messages. To exit press CTRL+C</span><br><span class="line"><span class="meta">#</span> =&gt; [x] Received 'First message.'</span><br><span class="line"><span class="meta">#</span> =&gt; [x] Received 'Third message...'</span><br><span class="line"><span class="meta">#</span> =&gt; [x] Received 'Fifth message.....'</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java -cp $CP Worker</span><br><span class="line"><span class="meta">#</span><span class="bash"> =&gt; [*] Waiting <span class="keyword">for</span> messages. To <span class="built_in">exit</span> press CTRL+C</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> =&gt; [x] Received <span class="string">'First message.'</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> =&gt; [x] Received <span class="string">'Third message...'</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> =&gt; [x] Received <span class="string">'Fifth message.....'</span></span></span><br></pre></td></tr></table></figure>
 <p>消费者C2</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java -cp $CP Worker</span><br><span class="line"><span class="meta">#</span> =&gt; [*] Waiting for messages. To exit press CTRL+C</span><br><span class="line"><span class="meta">#</span> =&gt; [x] Received 'Second message..'</span><br><span class="line"><span class="meta">#</span> =&gt; [x] Received 'Fourth message..</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java -cp $CP Worker</span><br><span class="line"><span class="meta">#</span><span class="bash"> =&gt; [*] Waiting <span class="keyword">for</span> messages. To <span class="built_in">exit</span> press CTRL+C</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> =&gt; [x] Received <span class="string">'Second message..'</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> =&gt; [x] Received <span class="string">'Fourth message..</span></span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -514,8 +514,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/17/rabbitmq/运维相关/" rel="next" title="RabbitMQ（四）运维相关">
-                <i class="fa fa-chevron-left"></i> RabbitMQ（四）运维相关
+              <a href="/2018/04/15/react-redux/React技术栈一览/" rel="next" title="（二）React技术栈一览">
+                <i class="fa fa-chevron-left"></i> （二）React技术栈一览
               </a>
             
           </div>
@@ -524,8 +524,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/17/rabbitmq/交换机/" rel="prev" title="RabbitMQ（三）交换机">
-                RabbitMQ（三）交换机 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/17/rabbitmq/运维相关/" rel="prev" title="RabbitMQ（四）运维相关">
+                RabbitMQ（四）运维相关 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -680,7 +680,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -691,7 +691,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -702,7 +702,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -799,7 +799,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">8.2k</span>
+    <span title="Site words total count">9.6k</span>
   
 </div>
 
